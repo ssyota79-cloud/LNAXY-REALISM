@@ -1,0 +1,6 @@
+# LNAXY REALISM shader options
+
+option.LNAXY_EXPOSURE=Exposure
+option.LNAXY_CONTRAST=Contrast
+option.LNAXY_WATER_ROUGHNESS=Water Roughness
+option.LNAXY_ATMOSPHERE=Atmosphere Strength
