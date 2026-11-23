@@ -1,14 +1,3 @@
-# LNAXY REALISM v0.1.0
+# LNAXY REALISM 0.2.0
 
-## Fitur
-
-- sistem pencahayaan dasar
-- bayangan jarak jauh
-- dukungan normal/specular PBR
-- sky dan atmosfer sederhana
-- tone mapping cinematic
-- air transparan dengan Fresnel
-
-## Catatan
-
-Ini adalah fondasi shader, bukan versi final. Render pipeline GLSL harus diuji dengan Iris versi target sebelum fitur lanjutan ditambahkan.
+Installable Iris shader-pack starter. GLSL files are in the parent `shaders/` directory. This is intentionally a small compatibility-focused baseline; advanced shadows and PBR maps are not implemented yet.

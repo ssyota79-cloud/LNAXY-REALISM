@@ -1,39 +1,34 @@
 # LNAXY REALISM
 
-Shader pack untuk **Minecraft Java 1.21.11 dengan Iris**.
+**Status: installable starter build (0.2.0)** for Minecraft Java 1.21.11 with Iris. This is an early, lightweight shader—not yet a full Complementary/Euphoria-level shader.
 
-LNAXY REALISM berfokus pada pencahayaan PBR, atmosfer, bayangan realistis, dan permukaan berbahan air/kaca/batu yang natural.
+## Requirements
 
-## Status proyek
+- Minecraft Java Edition 1.21.11
+- Iris installed (Sodium is normally installed with Iris)
+- A graphics card with OpenGL support
 
-Fondasi awal sedang dikembangkan. Versi saat ini adalah **prototype 0.1.0** dan belum layak digunakan untuk gameplay.
+## Install
 
-## Persyaratan
-
-- Minecraft Java 1.21.11
-- Iris terbaru
-- GPU dengan dukungan shader
-- Opsional: resource pack PBR kompatibel labPBR atau shader lab
-
-## Cara instalasi
-
-1. Masukkan folder ini ke:
-   - Windows: `%appdata%/.minecraft/shaderpacks`
+1. On GitHub, choose **Code → Download ZIP** and extract the archive.
+2. Open the extracted `LNAXY-REALISM-main` folder. Confirm that it contains a `shaders` folder directly inside it.
+3. Copy that entire folder to your Minecraft `shaderpacks` directory:
+   - Windows: `%APPDATA%\\.minecraft\\shaderpacks`
+   - macOS: `~/Library/Application Support/minecraft/shaderpacks`
    - Linux: `~/.minecraft/shaderpacks`
-2. Pilih **LNAXY REALISM** dari layar Shader Packs Iris.
-3. Pasang resource pack PBR sebelum atau sesudah shader pack.
+4. Start the Minecraft 1.21.11 profile with Iris.
+5. Open **Options → Video Settings → Shader Packs**, select **LNAXY REALISM**, and press **Apply**.
 
-## Dukungan PBR
+You may also keep the downloaded ZIP in `shaderpacks` (do not put a ZIP inside another ZIP). The ZIP must contain `shaders/` at its top level.
 
-Shader ini dirancang mendukung format PBR yang umum digunakan oleh Iris, termasuk:
+## PBR resource packs
 
-- Normal map
-- Specular map
-- Roughness
-- Metallic
-- Emissive
-- Tangent-space normal
+Install a PBR resource pack separately through **Options → Resource Packs**. The starter shaders use the regular block texture and vanilla lightmap; full labPBR normal/specular-map rendering is **not implemented yet**. A PBR resource pack by itself will not add PBR effects until that shader feature is implemented.
 
-## Lisensi
+## Current limitations
 
-MIT License
+This starter build provides Iris shader programs for terrain, entities, hand, water, sky, and final color output. Advanced shadow mapping, PBR material lighting, volumetric atmosphere, and reflective/refractive water are still planned. The files have not yet been compiled or visually tested in a Minecraft client; if Iris reports an error, share the exact message and GPU model to help diagnose it.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
