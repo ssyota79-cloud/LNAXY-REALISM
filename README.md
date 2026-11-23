@@ -1,49 +1,18 @@
-# LNAXY REALISM
+# LNAXY REALISM 0.5.1 — corrected render pipeline
 
-**LNAXY REALISM 0.5.0 — Stable Compatibility Release**
+The previous gray-screen issue came from the composite pass sampling `colortex0` while also writing back to the same render target. That is an undefined framebuffer feedback loop. This update routes the composite output to `colortex1`, and the final pass reads that separate target.
 
-Built for Minecraft Java 1.21.11 with Iris. This build deliberately removes experimental shadow and depth-buffer accesses that can cause a fallback or compile failure. It provides visible, safe color grading and a complete shader settings menu while the advanced rendering stages are developed separately.
+Shader settings are declared as Iris/OptiFine preprocessor options (`#define` with slider values), not unset runtime uniforms. The final pass uses `gl_FragColor` for GLSL 1.20 compatibility.
 
-## Installation
+## Install/update
 
-1. Download **LNAXY-REALISM-main.zip** using GitHub **Code → Download ZIP**.
-2. Extract it completely.
-3. Copy the extracted folder into the Minecraft `shaderpacks` folder:
-   - Windows: `%APPDATA%\\.minecraft\\shaderpacks`
-   - macOS: `~/Library/Application Support/minecraft/shaderpacks`
-   - Linux: `~/.minecraft/shaderpacks`
-4. Launch Minecraft 1.21.11 with Iris.
-5. Open **Options → Video Settings → Shader Packs**.
-6. Select **LNAXY REALISM**, then choose **Apply**.
-7. Open **Shader Pack Settings** to select LOW, MEDIUM, HIGH, or ULTRA.
+1. Close Minecraft.
+2. Download the latest ZIP from the repository and extract it.
+3. Remove older LNAXY folders/ZIPs from `.minecraft/shaderpacks` so Iris does not load a duplicate.
+4. Copy the extracted folder containing `shaders/` into `shaderpacks`.
+5. Start Minecraft with Iris and select **LNAXY REALISM 0.5.1** (rename the folder to this if needed).
+6. Click **Apply**, then open Shader Pack Settings for presets and controls.
 
-## What changed in 0.5.0
+## What the settings currently do
 
-- Removed unsafe `depthtex0` access from the composite pass.
-- Removed invalid shadow sampler assumptions from terrain and water passes.
-- Replaced the experimental pipeline with colortex0-safe compatibility passes.
-- Added visible post-processing instead of merely displaying a settings menu.
-- Added LOW, MEDIUM, HIGH, and ULTRA profiles.
-- Added exposure, contrast, saturation, cinematic color, vignette, and bloom controls.
-- Added water tint, opacity, Fresnel, wave, and depth-style controls.
-- Added separate English and Indonesian language labels.
-
-## Settings
-
-Profiles tune all implemented controls. LOW favors compatibility, MEDIUM is the balanced default, HIGH adds stronger color effects, and ULTRA enables the strongest safe appearance settings.
-
-Advanced PBR normal/specular rendering, real shadow maps, SSR, volumetric clouds, and depth-based refraction require additional Iris-tested files and should not be enabled until each pass is validated.
-
-## Troubleshooting
-
-If the shader still falls back:
-
-1. Remove every older copy of LNAXY REALISM from `shaderpacks`.
-2. Extract the downloaded ZIP again.
-3. Confirm that the selected folder has a direct `shaders/` directory.
-4. Reopen Iris and select the pack again.
-5. Send the first exact error line from the Iris compile log, your GPU model, and Iris version.
-
-## License
-
-MIT License.
+LOW/MEDIUM/HIGH/ULTRA profiles control available post-processing, atmospheric screen haze, and water tint/distortion. This remains an early shader; it is not equivalent to Complementary Unbound or Euphoria Patches. It does not yet include full dynamic shadowing, real volumetric clouds, screen-space reflections/refraction, caustics, or full labPBR material response. No compatibility claim should be treated as tested until the shader is compiled in-game on the target Iris/GPU.

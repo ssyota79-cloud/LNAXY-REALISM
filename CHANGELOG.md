@@ -1,3 +1,3 @@
-# LNAXY REALISM v0.5.0
+# LNAXY REALISM 0.5.1
 
-Fixed for Iris shader-pack compatibility by reducing the pipeline to vanilla-safe GBuffer passes and the colortex0 post-processing chain.
+Fixed the gray output caused by composite framebuffer feedback, routed composite to a separate color target, and corrected the final output to GLSL 1.20 `gl_FragColor`. Shader controls are preprocessor options with defaults so the settings menu changes actual shader values.
