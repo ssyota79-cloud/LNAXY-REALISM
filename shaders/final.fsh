@@ -4,10 +4,11 @@ uniform sampler2D colortex0;
 uniform float LNAXY_EXPOSURE;
 uniform float LNAXY_CONTRAST;
 uniform float LNAXY_SATURATION;
+uniform float LNAXY_TONEMAP;
 uniform float LNAXY_VIGNETTE;
 uniform float LNAXY_BLOOM;
-uniform float LNAXY_TONEMAP;
-uniform float LNAXY_FOG_DISTANCE;
+uniform float LNAXY_WARMTH;
+uniform float LNAXY_GREEN_TINT;
 uniform float viewWidth;
 uniform float viewHeight;
 
@@ -22,28 +23,28 @@ vec3 aces(vec3 x) {
     return clamp((x * (a * x + b)) / (x * (c * x + d) + e), 0.0, 1.0);
 }
 
-vec3 lnaxyBloom(vec3 color, vec2 px) {
-    vec3 glow = vec3(0.0);
-    glow += texture2D(colortex0, texcoord + vec2(px.x * 2.0, 0.0)).rgb;
-    glow += texture2D(colortex0, texcoord - vec2(px.x * 2.0, 0.0)).rgb;
-    glow += texture2D(colortex0, texcoord + vec2(0.0, px.y * 2.0)).rgb;
-    glow += texture2D(colortex0, texcoord - vec2(0.0, px.y * 2.0)).rgb;
-    glow *= 0.25;
-    glow = max(glow - vec3(0.64), vec3(0.0));
-    return glow;
-}
-
 void main() {
     vec3 color = texture2D(colortex0, texcoord).rgb * LNAXY_EXPOSURE;
-    vec2 px = 1.0 / vec2(viewWidth, viewHeight);
-    color += lnaxyBloom(color, px) * LNAXY_BLOOM;
+
+    vec2 px = vec2(1.0 / max(viewWidth, 1.0), 1.0 / max(viewHeight, 1.0));
+    vec3 glow = texture2D(colortex0, texcoord + vec2(px.x * 3.0, 0.0)).rgb;
+    glow += texture2D(colortex0, texcoord - vec2(px.x * 3.0, 0.0)).rgb;
+    glow += texture2D(colortex0, texcoord + vec2(0.0, px.y * 3.0)).rgb;
+    glow += texture2D(colortex0, texcoord - vec2(0.0, px.y * 3.0)).rgb;
+    glow *= 0.25;
+    glow = max(glow - vec3(0.60), vec3(0.0));
+    color += glow * LNAXY_BLOOM;
 
     if (LNAXY_TONEMAP > 1.5) color = aces(color);
     else if (LNAXY_TONEMAP > 0.5) color = color / (vec3(1.0) + max(color, vec3(0.0)));
 
     color = (color - 0.5) * LNAXY_CONTRAST + 0.5;
-    float gray = dot(color, vec3(0.2126, 0.7152, 0.0722));
-    color = mix(vec3(gray), color, LNAXY_SATURATION);
+    float luminance = dot(color, vec3(0.2126, 0.7152, 0.0722));
+    color = mix(vec3(luminance), color, LNAXY_SATURATION);
+
+    color.r *= 1.0 + LNAXY_WARMTH * 0.20;
+    color.b *= 1.0 - LNAXY_WARMTH * 0.10;
+    color.g *= 1.0 + LNAXY_GREEN_TINT;
 
     vec2 centered = texcoord * 2.0 - 1.0;
     float vignette = dot(centered, centered);

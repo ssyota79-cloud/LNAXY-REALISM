@@ -1,3 +1,3 @@
-# LNAXY REALISM 0.4.0
+# LNAXY REALISM 0.5.0
 
-A full atmospheric shader starter with configurable presets.
+Stable compatibility release. Unsafe experimental GBuffer, depth, and shadow sampler assumptions have been removed.
