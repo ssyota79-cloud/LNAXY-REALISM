@@ -1,0 +1,14 @@
+# Pengaturan shader
+profile.LOW=RENDAH — Performa
+profile.MEDIUM=SEDANG — Seimbang
+profile.HIGH=Tinggi — Visual
+profile.ULTRA=ULTRA — Maksimum
+screen.LNAXY_COLOR=Warna & Pemrosesan Akhir
+screen.LNAXY_WATER=Air
+option.LNAXY_EXPOSURE=Eksposur
+option.LNAXY_CONTRAST=Kontras
+option.LNAXY_SATURATION=Saturasi
+option.LNAXY_VIGNETTE=Vinyet
+option.LNAXY_BLOOM=Kekuatan Bloom
+option.LNAXY_WATER_TINT=Tint Air
+option.LNAXY_WATER_OPACITY=Opasitas Air

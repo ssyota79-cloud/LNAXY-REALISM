@@ -1,6 +1,14 @@
-# LNAXY REALISM shader options
-
+# Shader option labels
+profile.LOW=LOW — Performance
+profile.MEDIUM=MEDIUM — Balanced
+profile.HIGH=HIGH — Visual
+profile.ULTRA=ULTRA — Maximum
+screen.LNAXY_COLOR=Color & Post Processing
+screen.LNAXY_WATER=Water
 option.LNAXY_EXPOSURE=Exposure
 option.LNAXY_CONTRAST=Contrast
-option.LNAXY_WATER_ROUGHNESS=Water Roughness
-option.LNAXY_ATMOSPHERE=Atmosphere Strength
+option.LNAXY_SATURATION=Saturation
+option.LNAXY_VIGNETTE=Vignette
+option.LNAXY_BLOOM=Bloom Strength
+option.LNAXY_WATER_TINT=Water Tint
+option.LNAXY_WATER_OPACITY=Water Opacity
